@@ -1,0 +1,565 @@
+  /* ── Reset & Base ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: #e8e8e8;
+    color: #111;
+    min-height: 100vh;
+  }
+
+  /* ── NAV ── */
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    padding: 0 32px;
+    height: 60px;
+  }
+
+  .navbar__logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: #111;
+  }
+
+  .navbar__center {
+    font-size: 1rem;
+    color: #111;
+  }
+
+  .navbar__search {
+    cursor: pointer;
+    color: #555;
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar__search svg { width: 20px; height: 20px; }
+
+  /* ── PAGE WRAPPER ── */
+  .page {
+    display: none;
+    flex-direction: column;
+    min-height: calc(100vh - 60px);
+    background: #e8e8e8;
+  }
+  .page.active { display: flex; }
+
+  /* ── FOOTER ── */
+  .footer {
+    margin-top: auto;
+    padding: 14px 32px;
+    font-size: 0.72rem;
+    color: #666;
+    border-top: 1px solid #ccc;
+    background: #fff;
+  }
+
+  /* ════════════════════════════
+      TELA 1 — LOGIN
+  ════════════════════════════ */
+  .login-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 16px;
+  }
+
+  .login-card {
+    background: #d4d4d4;
+    border-radius: 16px;
+    padding: 56px 80px;
+    width: 100%;
+    max-width: 560px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  .login-card__title {
+    font-size: 2rem;
+    font-weight: 400;
+    margin-bottom: 36px;
+  }
+
+  .login-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .form-group label {
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .form-group input {
+    padding: 10px 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    background: #fff;
+    color: #888;
+    outline: none;
+  }
+
+  .form-group input:focus {
+    border-color: #2196f3;
+  }
+
+  .btn-primary {
+    margin-top: 12px;
+    padding: 12px 40px;
+    background: #2196f3;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    font-size: 1rem;
+    cursor: pointer;
+    align-self: center;
+    min-width: 160px;
+    transition: background 0.2s;
+  }
+  .btn-primary:hover { background: #1976d2; }
+
+  /* ════════════════════════════
+      TELA 2 — DASHBOARD
+  ════════════════════════════ */
+  .dashboard-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 40px 16px;
+  }
+
+  .dashboard-card {
+    background: #d4d4d4;
+    border-radius: 16px;
+    padding: 28px 32px 36px;
+    width: 100%;
+    max-width: 640px;
+  }
+
+  .dashboard-card__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  .dashboard-card__title {
+    font-size: 1.9rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  .icon-user {
+    width: 36px;
+    height: 36px;
+    color: #333;
+    cursor: pointer;
+  }
+
+  .btn-nova-tarefa {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #9e9e9e;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 18px;
+    font-size: 0.88rem;
+    cursor: pointer;
+    margin-bottom: 24px;
+    transition: background 0.2s;
+  }
+  .btn-nova-tarefa:hover { background: #757575; }
+
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .section-title svg { width: 18px; height: 18px; }
+
+  .tasks-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+
+  .task-item {
+    background: #fff;
+    border-radius: 10px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .task-checkbox {
+    width: 28px;
+    height: 28px;
+    border-radius: 5px;
+    background: #bbb;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .task-checkbox.checked {
+    background: #2196f3;
+  }
+
+  .task-checkbox.checked svg {
+    display: block;
+  }
+
+  .task-checkbox svg {
+    display: none;
+    width: 18px;
+    height: 18px;
+    color: #fff;
+  }
+
+  .task-info { flex: 1; }
+
+  .task-info__name {
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 3px;
+  }
+
+  .task-info__priority {
+    font-size: 0.8rem;
+  }
+
+  .task-info__priority span { font-weight: 600; }
+  .priority-alta { color: #e53935; }
+  .priority-media { color: #ff9800; }
+  .priority-baixa { color: #43a047; }
+
+  .task-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    color: #444;
+    flex-shrink: 0;
+  }
+
+  .task-meta svg { width: 16px; height: 16px; }
+
+  .task-meta--concluida {
+    color: #444;
+  }
+
+  .btn-ver-todas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto;
+    background: #2196f3;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    padding: 12px 24px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .btn-ver-todas:hover { background: #1976d2; }
+  .btn-ver-todas svg { width: 18px; height: 18px; }
+
+  /* ════════════════════════════
+      TELA 3 — VER TODAS
+  ════════════════════════════ */
+  .all-tasks-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 40px 16px;
+  }
+
+  .all-tasks-card {
+    background: #d4d4d4;
+    border-radius: 16px;
+    padding: 28px 32px 40px;
+    width: 100%;
+    max-width: 760px;
+  }
+
+  .all-tasks-card__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  .search-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #c8c8c8;
+    border-radius: 8px;
+    padding: 8px 14px;
+    margin-bottom: 20px;
+    max-width: 320px;
+  }
+
+  .search-bar input {
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 0.9rem;
+    color: #555;
+    flex: 1;
+  }
+
+  .search-bar svg { width: 16px; height: 16px; color: #777; }
+
+  .table-header {
+    display: grid;
+    grid-template-columns: 48px 1fr 120px 160px;
+    align-items: center;
+    padding: 0 16px 8px;
+    border-bottom: 1px solid #bbb;
+    gap: 8px;
+  }
+
+  .table-header span {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #333;
+  }
+
+  .table-header span:last-child { text-align: right; }
+  .table-header span:nth-child(3) { text-align: center; }
+
+  .all-tasks-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .all-task-row {
+    background: #fff;
+    border-radius: 10px;
+    padding: 14px 16px;
+    display: grid;
+    grid-template-columns: 48px 1fr 120px 160px;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .all-task-row .task-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .action-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #555;
+    transition: background 0.15s;
+  }
+  .action-btn:hover { background: #f0f0f0; }
+  .action-btn svg { width: 14px; height: 14px; }
+
+  .task-date-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 6px;
+    font-size: 0.82rem;
+    color: #444;
+  }
+  .task-date-right svg { width: 16px; height: 16px; }
+
+  /* ════════════════════════════
+      TELA 4 — NOVA TAREFA
+  ════════════════════════════ */
+  .new-task-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 40px 16px;
+  }
+
+  .new-task-card {
+    background: #d4d4d4;
+    border-radius: 16px;
+    padding: 36px 48px 48px;
+    width: 100%;
+    max-width: 820px;
+  }
+
+  .new-task-card__title {
+    font-size: 2rem;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .field-block {
+    background: #e0e0e0;
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 16px;
+  }
+
+  .field-block label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .field-block input[type="text"] {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: 0.9rem;
+    background: #fff;
+    color: #999;
+    outline: none;
+  }
+
+  .field-block textarea {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: 0.9rem;
+    background: #fff;
+    color: #999;
+    outline: none;
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .prazo-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .prazo-row label {
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  .prazo-pill {
+    background: #e8e8e8;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 6px 14px;
+    font-size: 0.85rem;
+    color: #333;
+  }
+
+  .prioridade-block {
+    margin-bottom: 24px;
+  }
+
+  .prioridade-block label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .prioridade-options {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .prioridade-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+  }
+
+  .prioridade-option input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: #2196f3;
+  }
+
+  .new-task-footer {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  /* ── NAV TABS (demo navigation) ── */
+  .demo-nav {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: #333;
+    flex-wrap: wrap;
+  }
+
+  .demo-nav button {
+    padding: 6px 16px;
+    border-radius: 20px;
+    border: 1px solid #666;
+    background: #444;
+    color: #ddd;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .demo-nav button.active,
+  .demo-nav button:hover {
+    background: #2196f3;
+    border-color: #2196f3;
+    color: #fff;
+  }

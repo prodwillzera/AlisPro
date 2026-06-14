@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AlisPro – Sistema de Tarefas Acadêmicas</title>
+  <link rel="stylesheet" href="../CSS/style.css">
+</head>
+<body>
+
+  <!-- ── DEMO NAVIGATION ── -->
+  <div class="demo-nav">
+    <button class="active" onclick="showPage('login')">Desktop 1 — Login</button>
+  </div>
+
+  <!-- ════════════════════════════════════
+       TELA 1 — LOGIN
+  ════════════════════════════════════ -->
+  <div id="page-login" class="page active">
+
+    <!-- Navbar -->
+    <nav class="navbar">
+      <span class="navbar__logo">AlisPro</span>
+      <span class="navbar__center">Sistema de Tarefas Acadêmicas</span>
+      <div class="navbar__search" aria-label="Pesquisar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="7"/>
+          <line x1="16.5" y1="16.5" x2="22" y2="22"/>
+        </svg>
+      </div>
+    </nav>
+
+    <!-- Content -->
+    <main class="login-wrapper">
+      <div class="login-card">
+        <h1 class="login-card__title">Area de login</h1>
+
+        <div class="login-form">
+          <!-- E-Mail -->
+          <div class="form-group">
+            <label for="email">E-Mail</label>
+            <input type="email" id="email" placeholder="email@mail.com" />
+          </div>
+
+          <!-- Senha -->
+          <div class="form-group">
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" placeholder="12345Aa@" />
+          </div>
+
+          <!-- Botão -->
+          <a href="dashboard.html"><button class="btn-primary" onclick="showPage('dashboard')">Entrar</button></a>
+          
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      AlisPro © 2026 – William Lopes Batista – Tomás Müller de Carvalho – Wellington Felipe Ribeiro
+    </footer>
+  </div>
+
+  <script type="module" src="../assets/js/login.js"></script>
+
+  <!-- ── JS: page switcher ── -->
+<!--   <script>
+    function showPage(name) {
+      // hide all pages
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      // show target
+      document.getElementById('page-' + name).classList.add('active');
+
+      // update nav buttons
+      const labels = {
+        'login': 0,
+        'dashboard': 1,
+        'nova-tarefa': 2,
+        'ver-todas': 3
+      };
+      document.querySelectorAll('.demo-nav button').forEach((btn, i) => {
+        btn.classList.toggle('active', i === labels[name]);
+      });
+    }
+  </script> -->
+
+</body>
+</html>

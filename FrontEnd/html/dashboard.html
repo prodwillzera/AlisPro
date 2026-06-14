@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AlisPro – Sistema de Tarefas Acadêmicas</title>
+  <link rel="stylesheet" href="../CSS/style.css">
+</head>
+<body>
+
+  <!-- ── DEMO NAVIGATION ── -->
+  <div class="demo-nav">
+    <button onclick="showPage('dashboard')">Desktop 2 — Dashboard</button>
+  </div>
+
+  <!-- ════════════════════════════════════
+       TELA 2 — DASHBOARD
+  ════════════════════════════════════ -->
+  <div id="page-dashboard" class="page">
+
+    <!-- Navbar -->
+    <nav class="navbar">
+      <span class="navbar__logo">AlisPro</span>
+      <span class="navbar__center">Sistema de Tarefas Acadêmicas</span>
+      <div class="navbar__search" aria-label="Pesquisar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="7"/>
+          <line x1="16.5" y1="16.5" x2="22" y2="22"/>
+        </svg>
+      </div>
+    </nav>
+
+    <!-- Content -->
+    <main class="dashboard-wrapper">
+      <div class="dashboard-card">
+
+        <!-- Header -->
+        <div class="dashboard-card__header">
+          <h2 class="dashboard-card__title">ALISPRO</h2>
+          <div aria-label="Perfil do usuário">
+            <svg class="icon-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="12" cy="8" r="4"/>
+              <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Nova Tarefa btn -->
+        <a href="newHomework.html">
+          <button class="btn-nova-tarefa" onclick="showPage('nova-tarefa')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="12" y1="5" x2="12" y2="19"/>
+            <line x1="5" y1="12" x2="19" y2="12"/>
+          </svg>
+          Nova Tarefa
+          </button>
+        </a>
+
+        <!-- Section title -->
+        <div class="section-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2"/>
+            <line x1="16" y1="2" x2="16" y2="6"/>
+            <line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+          Tarefas Pendentes
+        </div>
+
+        <!-- Task list -->
+        <ul class="tasks-list" role="list">
+
+          <!-- Tarefa 1 — Alta -->
+          <li class="task-item" role="listitem">
+            <div class="task-checkbox" aria-label="Tarefa não concluída"></div>
+            <div class="task-info">
+              <p class="task-info__name">Trabalho de Banco de Dados</p>
+              <p class="task-info__priority">
+                Prioridade: <span class="priority-alta">Alta</span>
+              </p>
+            </div>
+            <div class="task-meta" aria-label="Prazo: 19/05/2026">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+              19/05/2026
+            </div>
+          </li>
+
+          <!-- Tarefa 2 — Média -->
+          <li class="task-item" role="listitem">
+            <div class="task-checkbox" aria-label="Tarefa não concluída"></div>
+            <div class="task-info">
+              <p class="task-info__name">Trabalho de Banco de Dados</p>
+              <p class="task-info__priority">
+                Prioridade: <span class="priority-media">Média</span>
+              </p>
+            </div>
+            <div class="task-meta" aria-label="Prazo: 12/05/2026">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+              12/05/2026
+            </div>
+          </li>
+
+          <!-- Tarefa 3 — Concluída -->
+          <li class="task-item" role="listitem">
+            <div class="task-checkbox checked" aria-label="Tarefa concluída">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </div>
+            <div class="task-info">
+              <p class="task-info__name">Trabalho de Banco de Dados</p>
+              <p class="task-info__priority">
+                Prioridade: <span class="priority-media">Média</span>
+              </p>
+            </div>
+            <div class="task-meta task-meta--concluida" aria-label="Tarefa concluída">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="9"/>
+                <polyline points="9 12 11 14 15 10"/>
+              </svg>
+              Concluída
+            </div>
+          </li>
+
+        </ul>
+
+        <!-- Ver Todas -->
+        <a href="allHomework.html">
+          <button class="btn-ver-todas" onclick="showPage('ver-todas')" href="allHomework.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/>
+          </svg>
+          Ver Todas
+          </button>
+        </a>
+        
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      AlisPro © 2026 – William Lopes Batista – Tomás Müller de Carvalho – Wellington Felipe Ribeiro
+    </footer>
+  </div>
+  <!-- ── JS: page switcher ── -->
+  <script>
+    function showPage(name) {
+      // hide all pages
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      // show target
+      document.getElementById('page-' + name).classList.add('active');
+
+      // update nav buttons
+      const labels = {
+        'login': 0,
+        'dashboard': 1,
+        'nova-tarefa': 2,
+        'ver-todas': 3
+      };
+      document.querySelectorAll('.demo-nav button').forEach((btn, i) => {
+        btn.classList.toggle('active', i === labels[name]);
+      });
+    }
+  </script>
+
+</body>
+</html>
