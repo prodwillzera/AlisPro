@@ -1,8 +1,9 @@
 import { logar } from './modules/auth.js';
 
-const btn = document.querySelector('btn-primary');
+const btn = document.querySelector('.btn-primary');
 
 btn?.addEventListener('click', (e) => {
-  e.preventDefault();
-  logar();
+    e.preventDefault();
+    console.log('Botão clicado!');
+    logar();
 });

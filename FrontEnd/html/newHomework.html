@@ -1,65 +1,54 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AlisPro – Sistema de Tarefas Acadêmicas</title>
   <link rel="stylesheet" href="../CSS/style.css">
 </head>
+
 <body>
-
-  <!-- ── DEMO NAVIGATION ── -->
-  <div class="demo-nav">
-    <button onclick="showPage('nova-tarefa')">Desktop 3 — Nova Tarefa</button>
-  </div>
-
-  <!-- ════════════════════════════════════
-       TELA 3 — NOVA TAREFA
-  ════════════════════════════════════ -->
   <div id="page-nova-tarefa" class="page">
 
-    <!-- Navbar -->
     <nav class="navbar">
       <span class="navbar__logo">AlisPro</span>
       <span class="navbar__center">Sistema de Tarefas Acadêmicas</span>
       <div class="navbar__search" aria-label="Pesquisar">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="11" cy="11" r="7"/>
-          <line x1="16.5" y1="16.5" x2="22" y2="22"/>
+          <circle cx="11" cy="11" r="7" />
+          <line x1="16.5" y1="16.5" x2="22" y2="22" />
         </svg>
       </div>
     </nav>
 
-    <!-- Content -->
     <main class="new-task-wrapper">
       <div class="new-task-card">
 
         <h1 class="new-task-card__title">Nova Tarefa</h1>
 
-        <!-- Nome da tarefa -->
         <div class="field-block">
           <label for="nome-tarefa">Nome da tarefa:</label>
           <input type="text" id="nome-tarefa" placeholder="Tarefa..." />
         </div>
 
-        <!-- Descrição -->
         <div class="field-block">
           <label for="descricao-tarefa">Descrição:</label>
           <textarea id="descricao-tarefa" placeholder="Descrição da tarefa..."></textarea>
         </div>
 
-        <!-- Prazo -->
         <div class="prazo-row">
           <label>Prazo:</label>
           <div class="prazo-pill" aria-label="Data do prazo">
-            <input type="date" value="2025-04-01" style="border:none;background:transparent;font-size:0.85rem;color:#333;outline:none;" />
+            <input type="date" value="2025-04-01"
+              style="border:none;background:transparent;font-size:0.85rem;color:#333;outline:none;" />
           </div>
           <div class="prazo-pill" aria-label="Hora do prazo">
-            <input type="time" value="09:41" style="border:none;background:transparent;font-size:0.85rem;color:#333;outline:none;" />
+            <input type="time" value="09:41"
+              style="border:none;background:transparent;font-size:0.85rem;color:#333;outline:none;" />
           </div>
         </div>
 
-        <!-- Prioridade -->
         <div class="prioridade-block">
           <label>Prioridade:</label>
           <div class="prioridade-options" role="group" aria-label="Nível de prioridade">
@@ -82,9 +71,12 @@
           </div>
         </div>
 
-        <!-- Enviar -->
         <div class="new-task-footer">
-          <button class="btn-primary" onclick="showPage('dashboard')">Enviar tarefa</button>
+          <a href="dashboard.html">
+              <button class="btn-primary">
+                  Enviar tarefa
+              </button>
+          </a>
         </div>
 
       </div>
@@ -95,26 +87,6 @@
     </footer>
   </div>
 
-  <!-- ── JS: page switcher ── -->
-  <script>
-    function showPage(name) {
-      // hide all pages
-      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-      // show target
-      document.getElementById('page-' + name).classList.add('active');
-
-      // update nav buttons
-      const labels = {
-        'login': 0,
-        'dashboard': 1,
-        'nova-tarefa': 2,
-        'ver-todas': 3
-      };
-      document.querySelectorAll('.demo-nav button').forEach((btn, i) => {
-        btn.classList.toggle('active', i === labels[name]);
-      });
-    }
-  </script>
-
 </body>
+
 </html>
