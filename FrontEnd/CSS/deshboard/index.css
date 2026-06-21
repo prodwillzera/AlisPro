@@ -50,7 +50,10 @@
     cursor: pointer;
     box-shadow: var(--shadow-blue-soft);
     transition: var(--transition-normal);
-    
+}
+
+.main-field button#newHomeworkButton {
+    padding: 5px 10px;
 }
 
 .main-field button:hover {
