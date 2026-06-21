@@ -2,7 +2,7 @@
     background: var(--gradient-card);
     border: 1px solid var(--color-border-soft);
     border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-purple-soft);
+    box-shadow: var(--shadow-blue-soft);
     
     width: 100%;
     max-width: 700px;
@@ -42,20 +42,28 @@
 }
 
 .main-field button {
-    background: var(--gradient-primary);
+    background: var(--color-primary);
     color: var(--color-text-main);
     border: none;
     border-radius: var(--radius-lg);
     font-weight: 800;
     cursor: pointer;
-    box-shadow: var(--shadow-purple-soft);
+    box-shadow: var(--shadow-blue-soft);
     transition: var(--transition-normal);
-    padding: 5px 10px;
+    
 }
 
 .main-field button:hover {
     filter: brightness(1.12);
-    box-shadow: var(--shadow-purple-strong);
+    background: var(--color-primary-hover);
+    box-shadow: var(--shadow-blue-strong);
+    transform: translateY(-1px);
+}
+
+.main-field button.action-btn:hover {
+    filter: brightness(1.12);
+    background: var(--color-corruption);
+    box-shadow: var(--shadow-corruption-strong);
     transform: translateY(-1px);
 }
 

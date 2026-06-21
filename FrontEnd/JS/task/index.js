@@ -11,6 +11,7 @@ let taskTitle = document.getElementById("taskTitle")
 let taskDescription = document.getElementById("taskDescription")
 
 let taskPriority = document.getElementById("taskPriority")
+let taskCompleted = document.getElementById("taskCompleted")
 
 let taskDate = document.getElementById("taskDate")
 let setDate = (time) => taskDate.value = time.toISOString().split('T')[0]
@@ -18,6 +19,7 @@ let setDate = (time) => taskDate.value = time.toISOString().split('T')[0]
 let errorAlert = document.getElementById("errorAlert").getElementsByTagName('label')[0]
 
 let saveTaskButton = document.getElementById("saveTaskButton")
+let cancelButton = document.getElementById("cancelButton")
 
 
 if (taskId) {
@@ -37,6 +39,9 @@ if (taskId) {
         taskTitle.value = taskInfo.title
         taskDescription.value = taskInfo.description
         taskPriority.value = taskInfo.priority
+        taskCompleted.checked = taskInfo.status == 'completed'
+        console.log(taskInfo)
+
         setDate(new Date(taskInfo.due_date))
     } else {
         taskId = null
@@ -49,6 +54,7 @@ let newAlert = (text) => {
     errorAlert.style.display = 'block'
 }
 
+cancelButton.onclick = () => window.location.href = siteUrl+'/HTML/dashboard?'+new URLSearchParams({ token }).toString();
 saveTaskButton.onclick = async() => {
     if (!taskTitle.value) return newAlert('Você deve adicionar um título!')
     if (!taskDescription.value) return newAlert('Você deve adicionar uma descrição!')
@@ -65,6 +71,7 @@ saveTaskButton.onclick = async() => {
             description: taskDescription.value,
             priority: taskPriority.value,
             due_date: `${taskDate.value}`,
+            status: taskCompleted.checked ? 'completed' : 'pending',
             token
         })
     }).then((res) => res.json());

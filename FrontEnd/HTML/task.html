@@ -36,11 +36,15 @@
                <div class="main-field">
                     <label>Prioridade: 
                         <select id="taskPriority">
-                            <option value="high">Alto</option>
+                            <option value="high">Alta</option>
                             <option value="medium">Médio</option>
                             <option value="low">Baixo</option>
                         </select>
                     </label>
+               </div>
+
+               <div class="main-field">
+                    <label>Tarefa concluida: <input id="taskCompleted" type="checkbox"></label>
                </div>
 
                <div id="errorAlert" class="main-field alert">
@@ -49,6 +53,7 @@
 
                <div class="main-field">
                     <button id="saveTaskButton">Salvar Tarefa</button>
+                    <button id="cancelButton">Cancelar</button>
                </div>
             </section>
         </main>

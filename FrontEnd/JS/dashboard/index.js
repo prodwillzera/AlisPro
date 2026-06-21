@@ -79,11 +79,50 @@ let drawTasks = async(tasks) => {
         taskInfoPriority.innerHTML = `Prioridade: <span class="priority ${task.priority}">${priorityName[task.priority]}</span>`
 
         let taskMetaTime = new Date(task.due_date)
-        taskMeta.innerText = `${taskMetaTime.getDate().toString().padStart(2, "0")}/${taskMetaTime.getMonth().toString().padStart(2, "0")}/${taskMetaTime.getFullYear()}`
+        if (task.status == 'completed') {
+            taskMeta.style.color = 'var(--priority-low)'
+            taskMeta.innerHTML = `
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+                    <path d="M8 12L11 15L16 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                
+            `
+        } else if (taskMetaTime <= +new Date()) {
+            taskMeta.style.color = 'var(--priority-high)'
+            taskMeta.innerHTML =`
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 3L22 20H2L12 3Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                    <path d="M12 9V14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M12 17H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                
+            `
+        } else {
+            taskMeta.style.color = 'var(--priority-medium)'
+            taskMeta.innerHTML = `
+                <svg width="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="4" width="18" height="18" rx="2" />
+                    <line x1="16" y1="2" x2="16" y2="6" />
+                    <line x1="8" y1="2" x2="8" y2="6" />
+                    <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
+            `
+        }
+
+        taskMeta.innerHTML += `${taskMetaTime.getDate().toString().padStart(2, "0")}/${taskMetaTime.getMonth().toString().padStart(2, "0")}/${taskMetaTime.getFullYear()}`
 
         taskActions.className = 'task-actions'
         deleteTaskButton.className = 'action-btn'
-        deleteTaskButton.innerText = 'X'
+        deleteTaskButton.innerHTML = `
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 7H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M10 11V17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M14 11V17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M6 7L7 20H17L18 7" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M9 7V4H15V7" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
+        `
 
         taskInfo.append(taskInfoName)
         taskInfo.append(taskInfoPriority)
@@ -107,7 +146,6 @@ let drawTasks = async(tasks) => {
                     })
                 }).then((res) => res.json());
 
-                console.log(deleteTaskRes)
                 if (!deleteTaskRes.error) getTaskList()
             } else {
                 window.location.href = siteUrl+'/HTML/task?'+new URLSearchParams({

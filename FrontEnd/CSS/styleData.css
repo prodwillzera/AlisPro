@@ -33,6 +33,7 @@
     --shadow-blue-soft: 0 0 18px rgba(47, 128, 255, 0.25);
     --shadow-blue-strong: 0 0 32px rgba(47, 128, 255, 0.45);
     --shadow-corruption: 0 0 22px rgba(255, 61, 138, 0.35);
+    --shadow-corruption-strong: 0 0 32px rgba(255, 61, 138, 0.35);
 
     /* Gradients */
     --gradient-bg-main: linear-gradient(135deg, #05080F 0%, #08111F 55%, #0D1B33 100%);

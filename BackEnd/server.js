@@ -141,7 +141,7 @@ app.post("/save-task", (req, res) => {
                 description = '${reqData.description}',
                 due_date = '${reqData.due_date}',
                 priority = '${reqData.priority}',
-                status = 'pending'
+                status = '${reqData.status}'
                 WHERE id = ${reqData.id} AND user_id = ${data.id};
             `, (err, result) => {
                 if (err) {
@@ -175,8 +175,10 @@ app.post("/get-tasks", (req, res) => {
     mysqlConnection.query(`
         SELECT * FROM tasks
         WHERE user_id = ${data.id}
-        ORDER BY due_date ASC,
-        FIELD(priority, 'high', 'medium', 'low');
+        ORDER BY 
+            CASE WHEN status = 'completed' THEN 1 ELSE 0 END ASC,
+            due_date ASC,
+            FIELD(priority, 'high', 'medium', 'low') ASC;
     `, (err, result) => {
         if (err) {
             console.error(err);
