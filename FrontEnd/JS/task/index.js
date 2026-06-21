@@ -58,7 +58,7 @@ cancelButton.onclick = () => window.location.href = siteUrl+'/HTML/dashboard?'+n
 saveTaskButton.onclick = async() => {
     if (!taskTitle.value) return newAlert('Você deve adicionar um título!')
     if (!taskDescription.value) return newAlert('Você deve adicionar uma descrição!')
-    if (+new Date(taskDate.value) <= +new Date()) return newAlert('Você deve adicionar uma data futura!')
+    //if (+new Date(taskDate.value) <= +new Date()) return newAlert('Você deve adicionar uma data futura!')
 
     const saveTaskRes = await fetch(serverUrl+'/save-task', {
         method: 'POST',
