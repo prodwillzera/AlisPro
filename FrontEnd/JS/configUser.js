@@ -1,5 +1,4 @@
 let serverUrl = 'http://26.180.163.91:3003'
-let siteUrl = 'http://26.180.163.91:3000'
 
 let currentParams = new URLSearchParams(window.location.search);
 let token = currentParams.get('token'); 
@@ -18,4 +17,4 @@ const userInfo = await fetch(serverUrl+'/get-user-info', {
 
 if (userInfo.data) {
     userName.innerText = userInfo.data.name
-} else window.location.href = siteUrl+'/HTML/login'
+} else window.location.href = window.location.origin+'/HTML/login'

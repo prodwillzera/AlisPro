@@ -1,13 +1,12 @@
 import "../configUser.js"
 
 let serverUrl = 'http://26.180.163.91:3003'
-let siteUrl = 'http://26.180.163.91:3000'
 
 let currentParams = new URLSearchParams(window.location.search);
 let token = currentParams.get('token'); 
 
 let newHomeworkButton = document.getElementById("newHomeworkButton")
-newHomeworkButton.onclick = () => window.location.href = siteUrl+'/HTML/task?'+new URLSearchParams({ token: token }).toString();
+newHomeworkButton.onclick = () => window.location.href = window.location.origin+'/HTML/task?'+new URLSearchParams({ token: token }).toString();
 
 let tasksList = document.getElementById("tasksList")
 let searchTasks = document.getElementById("searchTasks")
@@ -69,8 +68,8 @@ let drawTasks = async(tasks) => {
         newtask.className = 'task-item'
 
         taskInfo.className = 'task-info'
-        taskInfoName.className = 'info__name'
-        taskInfoPriority.className = 'info__priority'
+        taskInfoName.className = 'task-info-name'
+        taskInfoPriority.className = 'task-info-priority'
 
         taskMeta.className = 'task-meta'
 
@@ -110,7 +109,7 @@ let drawTasks = async(tasks) => {
             `
         }
 
-        taskMeta.innerHTML += `${taskMetaTime.getDate().toString().padStart(2, "0")}/${taskMetaTime.getMonth().toString().padStart(2, "0")}/${taskMetaTime.getFullYear()}`
+        taskMeta.innerHTML += `${taskMetaTime.getDate().toString().padStart(2, "0")}/${(taskMetaTime.getMonth()+1).toString().padStart(2, "0")}/${taskMetaTime.getFullYear()}`
 
         taskActions.className = 'task-actions'
         deleteTaskButton.className = 'action-btn'
@@ -133,22 +132,26 @@ let drawTasks = async(tasks) => {
 
         tasksList.append(newtask)
 
-        newtask.onclick = async(event) => {
-            if (event.target.className.includes("action-btn")) {
-                const deleteTaskRes = await fetch(serverUrl+'/delete-task', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        id: task.id,
-                        token
-                    })
-                }).then((res) => res.json());
+        let deleteTask = async() => {
+            const deleteTaskRes = await fetch(serverUrl+'/delete-task', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    id: task.id,
+                    token
+                })
+            }).then((res) => res.json());
 
-                if (!deleteTaskRes.error) getTaskList()
-            } else {
-                window.location.href = siteUrl+'/HTML/task?'+new URLSearchParams({
+            if (!deleteTaskRes.error) getTaskList()
+        }
+
+        deleteTaskButton.onclick = deleteTask
+        newtask.onclick = async(event) => {
+            if (event.target.className.includes("action-btn")) deleteTask()
+            else {
+                window.location.href = window.location.origin+'/HTML/task?'+new URLSearchParams({
                     token: token,
                     taskId: task.id
                 }).toString();

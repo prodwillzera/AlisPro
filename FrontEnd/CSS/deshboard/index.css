@@ -116,18 +116,19 @@
     flex: 1;
 }
 
-.task-info__name {
+.task-info-name {
     font-size: 0.95rem;
-    font-weight: 500;
+    font-weight: bold;
     margin-bottom: 3px;
 }
 
-.task-info__priority {
+.task-info-priority {
+    margin-left: 5px;
     font-size: 0.8rem;
 }
 
 
-.task-info__priority span { 
+.task-info-priority span { 
     font-weight: 600; 
 }
 .priority.high { color: var(--priority-high); }

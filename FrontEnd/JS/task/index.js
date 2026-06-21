@@ -1,7 +1,6 @@
 import "../configUser.js"
 
 let serverUrl = 'http://26.180.163.91:3003'
-let siteUrl = 'http://26.180.163.91:3000'
 
 let currentParams = new URLSearchParams(window.location.search);
 let token = currentParams.get('token'); 
@@ -54,7 +53,7 @@ let newAlert = (text) => {
     errorAlert.style.display = 'block'
 }
 
-cancelButton.onclick = () => window.location.href = siteUrl+'/HTML/dashboard?'+new URLSearchParams({ token }).toString();
+cancelButton.onclick = () => window.location.href = window.location.origin+'/HTML/dashboard?'+new URLSearchParams({ token }).toString();
 saveTaskButton.onclick = async() => {
     if (!taskTitle.value) return newAlert('Você deve adicionar um título!')
     if (!taskDescription.value) return newAlert('Você deve adicionar uma descrição!')
@@ -67,8 +66,8 @@ saveTaskButton.onclick = async() => {
         },
         body: JSON.stringify({
             id: taskId,
-            title: taskTitle.value,
-            description: taskDescription.value,
+            title: taskTitle.value.substring(0, 60),
+            description: taskDescription.value.substring(0, 4000),
             priority: taskPriority.value,
             due_date: `${taskDate.value}`,
             status: taskCompleted.checked ? 'completed' : 'pending',
@@ -80,6 +79,6 @@ saveTaskButton.onclick = async() => {
         console.error(saveTaskRes)
         newAlert(saveTaskRes.error)
     } else {
-        window.location.href = siteUrl+'/HTML/dashboard?'+new URLSearchParams({ token }).toString();
+        window.location.href = window.location.origin+'/HTML/dashboard?'+new URLSearchParams({ token }).toString();
     }
 }

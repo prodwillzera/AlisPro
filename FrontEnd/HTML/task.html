@@ -26,7 +26,7 @@
                
                <div class="main-field">
                     <label>Descrição:</label>
-                    <textarea id="taskDescription" placeholder="Descrição da tarefa..."></textarea>
+                    <textarea id="taskDescription" placeholder="Descrição da tarefa..." maxlength="4000"></textarea>
                </div>
 
                <div class="main-field">
@@ -44,7 +44,13 @@
                </div>
 
                <div class="main-field">
-                    <label>Tarefa concluida: <input id="taskCompleted" type="checkbox"></label>
+                    <label>
+                        <label class="checkbox">
+                            Tarefa concluida: 
+                            <input id="taskCompleted" type="checkbox" />
+                            <span class="checkmark"></span>
+                        </label>
+                    </label>
                </div>
 
                <div id="errorAlert" class="main-field alert">
@@ -62,6 +68,7 @@
             <p>&copy; 2026 – William Lopes Batista – Tomás Müller de Carvalho – Wellington Felipe Ribeiro</p>
         </footer>
 
+        <script type="module" src="../JS/index.js"></script>
         <script type="module" src="../JS/task/index.js"></script>
     </body>
 </html>

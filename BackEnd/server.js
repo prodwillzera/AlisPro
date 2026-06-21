@@ -154,7 +154,7 @@ app.post("/save-task", (req, res) => {
         } else {
             mysqlConnection.query(`
                 INSERT INTO tasks (user_id, title, description, due_date, priority, status) VALUES
-                (${data.id}, '${reqData.title}', '${reqData.description}', '${reqData.due_date}', '${reqData.priority}', 'pending');
+                (${data.id}, '${reqData.title}', '${reqData.description}', '${reqData.due_date}', '${reqData.priority}', '${reqData.status}');
             `, (err, result) => {
                 if (err) {
                     console.error(err);

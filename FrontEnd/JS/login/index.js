@@ -1,5 +1,4 @@
 let serverUrl = 'http://26.180.163.91:3003'
-let siteUrl = 'http://26.180.163.91:3000'
 
 let createAccountPageButton = document.getElementById("createAccountPageButton")
 let loginPageButton = document.getElementById("loginPageButton")
@@ -53,7 +52,7 @@ loginButton.addEventListener('click', async(event) => {
 
     if (!response.data || !response.data.email) return newAlert(loginAlert, 'Email ou senhas incorretos!')
     else {
-        window.location.href = siteUrl+'/HTML/dashboard?'+new URLSearchParams({ token: response.token }).toString();
+        window.location.href = window.location.origin+'/HTML/dashboard?'+new URLSearchParams({ token: response.token }).toString();
     }
 })
 
@@ -80,5 +79,5 @@ registerButton.addEventListener('click', async (event) => {
 
     if (response.error) return newAlert(registerAlert, response.error.code || response.error)
     
-    window.location.href = siteUrl+'/HTML/dashboard?'+new URLSearchParams({ token: response.token }).toString();
+    window.location.href = window.location.origin+'/HTML/dashboard?'+new URLSearchParams({ token: response.token }).toString();
 })

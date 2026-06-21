@@ -29,6 +29,7 @@ header span#title {
     font-weight: bold;
     width: 25%;
     margin: 10px;
+    cursor: pointer;
 }
 
 header span#info {
