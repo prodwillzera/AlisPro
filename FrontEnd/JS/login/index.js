@@ -1,4 +1,4 @@
-let serverUrl = 'http://localhost:3001'
+let serverUrl = 'http://localhost:3003'
 let siteUrl = 'http://localhost:3000'
 
 let createAccountPageButton = document.getElementById("createAccountPageButton")
@@ -27,8 +27,6 @@ loginPageButton.addEventListener(`click`, (event) => {
     loginAlert.style.display = 'none'
 })
 
-
-
 let newAlert = (element, text) => {
     element.style.display = 'block'
     element.innerText = text
@@ -53,12 +51,15 @@ loginButton.addEventListener('click', async(event) => {
         })
     }).then((res) => res.json());
 
-    if (response.error) return newAlert(loginAlert, response.error)
+    if (response.error) return newAlert(loginAlert, response.error.code || response.error)
 
-    if (!response.data || !response.data[0]) return newAlert(loginAlert, 'Email ou senhas incorretos!')
+    if (!response.data || !response.data.email) return newAlert(loginAlert, 'Email ou senhas incorretos!')
     else {
-        window.location.href = siteUrl+'/HTML/dashboard.html'
-        console.log(response.data)
+        const params = new URLSearchParams({
+            token: response.token
+        }).toString();
+        
+        window.location.href = siteUrl+'/HTML/dashboard?'+params
     }
 })
 
@@ -83,7 +84,11 @@ registerButton.addEventListener('click', async (event) => {
         })
     }).then((res) => res.json());
 
-    if (response.error) return newAlert(registerAlert, response.error)
-
-    window.location.href = siteUrl+'/HTML/deshboard.html'
+    if (response.error) return newAlert(registerAlert, response.error.code || response.error)
+    
+    const params = new URLSearchParams({
+        token: response.token
+    }).toString();
+    
+    window.location.href = siteUrl+'/HTML/dashboard?'+params
 })

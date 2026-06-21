@@ -32,6 +32,12 @@ div#loginRegisterContaner {
     padding: 32px;
 }
 
+@media (max-width: 420px) {
+    .login-card {
+        max-width: 100%
+    }
+}
+
 .login-title {
     color: var(--color-text-main);
     font-size: 32px;

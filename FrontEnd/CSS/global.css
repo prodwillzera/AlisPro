@@ -37,9 +37,18 @@ header span#info {
     transform: translateX(-50%);
 }
 
+header span#userName {
+    position: absolute;
+    right: 10px;
+}
+
 main {
     flex: 1;
     padding: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 

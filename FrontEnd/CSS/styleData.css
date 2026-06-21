@@ -1,58 +1,75 @@
 :root {
-  /* =========================
-     ECLYRA UI — Corrupted Save Theme
-     Alis / AI Guardian Theme
-  ========================= */
+    /* Backgrounds */
+    --color-bg-void: #05080F;
+    --color-bg-night: #08111F;
+    --color-bg-deep: #0D1B33;
+    --color-bg-card: #08111F;
+    --color-bg-card-alt: #0D1B33;
 
-  /* Backgrounds */
-  --color-bg-void: #07060D;
-  --color-bg-night: #100B1F;
-  --color-bg-deep: #1A102E;
-  --color-bg-card: #100B1F;
-  --color-bg-card-alt: #1A102E;
+    /* Blue aura */
+    --color-primary: #2F80FF;
+    --color-primary-hover: #5FA8FF;
+    --color-primary-soft: #A9D2FF;
 
-  /* Purple aura */
-  --color-primary: #7B2CFF;
-  --color-primary-hover: #9D5CFF;
-  --color-primary-soft: #C7A6FF;
+    /* Text */
+    --color-text-main: #EEF7FF;
+    --color-text-secondary: #A8BBD1;
+    --color-text-muted: #64748B;
 
-  /* Text */
-  --color-text-main: #F1EAFE;
-  --color-text-secondary: #AFA3C7;
-  --color-text-muted: #6F6388;
+    /* Borders */
+    --color-border: #1E3A5F;
+    --color-border-soft: rgba(95, 168, 255, 0.25);
+    --color-border-glow: rgba(47, 128, 255, 0.55);
 
-  /* Borders */
-  --color-border: #3A275C;
-  --color-border-soft: rgba(157, 92, 255, 0.25);
-  --color-border-glow: rgba(123, 44, 255, 0.55);
+    /* Relic / premium details */
+    --color-gold: #FFD98A;
+    --color-gold-old: #B88A4A;
 
-  /* Relic / premium details */
-  --color-gold: #FFD98A;
-  --color-gold-old: #B88A4A;
+    /* Corruption / glitch */
+    --color-corruption: #FF3D8A;
+    --color-cyber: #38F2FF;
 
-  /* Corruption / glitch */
-  --color-corruption: #FF3D8A;
-  --color-cyber: #38F2FF;
+    /* Shadows / glows */
+    --shadow-blue-soft: 0 0 18px rgba(47, 128, 255, 0.25);
+    --shadow-blue-strong: 0 0 32px rgba(47, 128, 255, 0.45);
+    --shadow-corruption: 0 0 22px rgba(255, 61, 138, 0.35);
 
-  /* Shadows / glows */
-  --shadow-purple-soft: 0 0 18px rgba(123, 44, 255, 0.25);
-  --shadow-purple-strong: 0 0 32px rgba(123, 44, 255, 0.45);
-  --shadow-corruption: 0 0 22px rgba(255, 61, 138, 0.35);
+    /* Gradients */
+    --gradient-bg-main: linear-gradient(135deg, #05080F 0%, #08111F 55%, #0D1B33 100%);
+    --gradient-header: linear-gradient(90deg, #08111F 0%, #0D1B33 100%);
+    --gradient-card: linear-gradient(145deg, rgba(13, 27, 51, 0.95), rgba(8, 17, 31, 0.95));
+    --gradient-primary: linear-gradient(135deg, #2F80FF, #5FA8FF);
+    --gradient-corrupted: linear-gradient(135deg, #2F80FF, #FF3D8A);
 
-  /* Gradients */
-  --gradient-bg-main: linear-gradient(135deg, #07060D 0%, #100B1F 55%, #1A102E 100%);
-  --gradient-header: linear-gradient(90deg, #100B1F 0%, #1A102E 100%);
-  --gradient-card: linear-gradient(145deg, rgba(26, 16, 46, 0.95), rgba(16, 11, 31, 0.95));
-  --gradient-primary: linear-gradient(135deg, #7B2CFF, #9D5CFF);
-  --gradient-corrupted: linear-gradient(135deg, #7B2CFF, #FF3D8A);
+    /* Radius */
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
 
-  /* Radius */
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
+    /* Layout */
+    --header-height: 72px;
+    --footer-height: 96px;
+    --container-width: 1180px;
 
-  /* Transitions */
-  --transition-fast: 150ms ease;
-  --transition-normal: 250ms ease;
+    /* Transitions */
+    --transition-fast: 150ms ease;
+    --transition-normal: 250ms ease;
+
+    /* Tasks */
+    --task-card-bg: #071426;
+    --task-card-bg-hover: #0B1D35;
+    --task-card-border: rgba(82, 158, 255, 0.18);
+    --task-card-border-hover: rgba(82, 158, 255, 0.45);
+
+    --task-title: #F3F8FF;
+    --task-date: #D7E9FF;
+    --task-label: #B7D7FF;
+
+    --priority-high: #FF4D6D;
+    --priority-medium: #FFD166;
+    --priority-low: #38E6A7;
+
+    --task-shadow: 0 8px 22px rgba(0, 0, 0, 0.28);
+    --task-glow-hover: 0 0 18px rgba(82, 158, 255, 0.22);
 }
