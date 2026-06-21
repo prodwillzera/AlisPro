@@ -12,7 +12,7 @@ let mysqlConnection = mysql.createConnection({
 });
 
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: ['http://localhost:3000', 'http://26.180.163.91:3000'],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
@@ -21,11 +21,13 @@ app.use(express.json());
 let connections = {}
 
 let newConnection = async(data, res) => {
-    console.log(data)
     let newToken = Math.random().toString(36).substring(2)+Math.random().toString(36).substring(2)
     connections[newToken] = {
         id: data.id,
-        email: data.email
+        name: data.name,
+        email: data.email,
+        created_at: data.created_at,
+        updated_at: data.updated_at
     }
 
     console.log(`New connection, token: ${newToken}`)
@@ -33,22 +35,28 @@ let newConnection = async(data, res) => {
 }
 
 
-app.post("/register-user", (req, res) => {
+app.post("/register-user", async(req, res) => {
     let data = req.body
     if (!data.email || !data.pass) return res.status(500).json({ error: 'Email e Senha inválidos' });
 
-    //let sql = `INSERT INTO users (email, pass) VALUES ('${data.email}', '${data.pass}')`;
+    
     let sql = `
         INSERT INTO users (name, email, password_hash)
         VALUES ('${data.email}', '${data.email}', '${data.pass}');
     `
-    mysqlConnection.query(sql, function (err, result) {
+    mysqlConnection.query(sql, (err, result) => {
         if (err) {
-            console.error(err);
-            res.status(500).json({ error: err });
+            if (err.errno == 1062) res.status(500).json({ error: 'Email já registrado' });
+            else {
+                console.error(err);
+                res.status(500).json({ error: err });
+            }
         } else {
             console.log("New user registred")
-            newConnection(result, res)
+
+            mysqlConnection.query(`SELECT * from users WHERE email = '${data.email}'`, (err, result) => {
+                if (!err) newConnection(result[0], res)
+            });
         }
     });
 });
@@ -58,7 +66,7 @@ app.post("/login-user", (req, res) => {
     if (!data.email || !data.pass) return res.status(500).json({ error: 'Email e Senha inválidos' });
 
     let sql = `SELECT * from users WHERE email = '${data.email}' and password_hash = '${data.pass}'`;
-    mysqlConnection.query(sql, function (err, result) {
+    mysqlConnection.query(sql, (err, result) => {
         if (err) {
             console.error(err);
             res.status(500).json({ error: err });
@@ -69,46 +77,114 @@ app.post("/login-user", (req, res) => {
     });
 });
 
-app.post("/get-connection-data", (req, res) => {
-    let reqToken = req.body?.token
-    let data = connections[reqToken]
+app.post("/get-user-info", (req, res) => {
+    let reqData = req.body
+    let data = connections[reqData?.token]
     if (!data) return res.status(500).json({ error: 'Conexão inválida' });
-
-    res.json({ data: data, token: reqToken })
+    
+    res.json({ data: data, token: reqData?.token })
 });
 
-app.post("/get-tasks", (req, res) => {
-    let reqToken = req.body?.token
-    let data = connections[reqToken]
+app.post("/get-task-info", (req, res) => {
+    let reqData = req.body
+    let data = connections[reqData?.token]
     if (!data) return res.status(500).json({ error: 'Conexão inválida' });
-
-    let sql = `
+    
+    mysqlConnection.query(`
         SELECT * FROM tasks
-        WHERE user_id = ${data.id}
-        ORDER BY due_date ASC,
-        FIELD(priority, 'high', 'medium', 'low');
-    `;
-    mysqlConnection.query(sql, function (err, result) {
+        WHERE user_id = ${data.id} and id = ${reqData.id}
+    `, (err, result) => {
         if (err) {
             console.error(err);
             res.status(500).json({ error: err });
         } else {
-            newConnection(result, res)
+            res.json({ data: result[0] })
         }
     });
+});
 
-    /*SELECT * FROM tasks
-ORDER BY due_date ASC,
-  FIELD(priority, 'high', 'medium', 'low');
+app.post("/delete-task", (req, res) => {
+    let reqData = req.body
+    let data = connections[reqData?.token]
+    if (!data) return res.status(500).json({ error: 'Conexão inválida' });
 
-  SELECT * FROM tasks
-WHERE user_id = 1
-ORDER BY due_date ASC,
-FIELD(priority, 'high', 'medium', 'low');
-  
-  INSERT INTO tasks (user_id, title, description, due_date, priority, status)
-VALUES (1, 'Finish task system', 'Create database and task list', '2026-06-25', 'high', 'pending');
-*/
+    mysqlConnection.query(`
+        DELETE FROM tasks
+        WHERE id = ${reqData.id} AND user_id = ${data.id};
+    `, (err, result) => {
+        if (err) {
+            console.error(err);
+            res.status(500).json({ error: err });
+        } else {
+            res.json({ message: 'Success' })
+        }
+    })
+})
+
+app.post("/save-task", (req, res) => {
+    let reqData = req.body
+    let data = connections[reqData?.token]
+    if (!data) return res.status(500).json({ error: 'Conexão inválida' });
+    
+    mysqlConnection.query(`
+        SELECT * FROM tasks
+        WHERE user_id = ${data.id} and id = ${reqData.id}
+    `, (err, result) => {
+        if (err) {
+            console.error(err);
+            res.status(500).json({ error: err });
+        } else if(result[0]) {
+            mysqlConnection.query(`
+                UPDATE tasks
+                SET
+                title = '${reqData.title}',
+                description = '${reqData.description}',
+                due_date = '${reqData.due_date}',
+                priority = '${reqData.priority}',
+                status = 'pending'
+                WHERE id = ${reqData.id} AND user_id = ${data.id};
+            `, (err, result) => {
+                if (err) {
+                    console.error(err);
+                    res.status(500).json({ error: err });
+                } else {
+                    res.json({ message: 'Success' })
+                }
+            });
+        } else {
+            mysqlConnection.query(`
+                INSERT INTO tasks (user_id, title, description, due_date, priority, status) VALUES
+                (${data.id}, '${reqData.title}', '${reqData.description}', '${reqData.due_date}', '${reqData.priority}', 'pending');
+            `, (err, result) => {
+                if (err) {
+                    console.error(err);
+                    res.status(500).json({ error: err });
+                } else {
+                    res.json({ message: 'Success' })
+                }
+            });
+        }
+    });
+});
+
+app.post("/get-tasks", (req, res) => {
+    let reqData = req.body
+    let data = connections[reqData?.token]
+    if (!data) return res.status(500).json({ error: 'Conexão inválida' });
+
+    mysqlConnection.query(`
+        SELECT * FROM tasks
+        WHERE user_id = ${data.id}
+        ORDER BY due_date ASC,
+        FIELD(priority, 'high', 'medium', 'low');
+    `, (err, result) => {
+        if (err) {
+            console.error(err);
+            res.status(500).json({ error: err });
+        } else {
+            res.json({ data: result })
+        }
+    });
 })
 
 
