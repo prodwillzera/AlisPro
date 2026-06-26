@@ -37,7 +37,7 @@ let newConnection = async(data, res) => {
 
 app.post("/register-user", async(req, res) => {
     let data = req.body
-    if (!data.email || !data.pass) return res.status(500).json({ error: 'Email e Senha inválidos' });
+    if (!data.email || !data.pass) return res.status(500).json({ error: 'Email ou Senha inválidos' });
 
     
     let sql = `
@@ -63,7 +63,7 @@ app.post("/register-user", async(req, res) => {
 
 app.post("/login-user", (req, res) => {
     let data = req.body
-    if (!data.email || !data.pass) return res.status(500).json({ error: 'Email e Senha inválidos' });
+    if (!data.email || !data.pass) return res.status(500).json({ error: 'Email ou Senha inválidos' });
 
     let sql = `SELECT * from users WHERE email = '${data.email}' and password_hash = '${data.pass}'`;
     mysqlConnection.query(sql, (err, result) => {
@@ -71,7 +71,7 @@ app.post("/login-user", (req, res) => {
             console.error(err);
             res.status(500).json({ error: err });
         } else {
-            if (!result[0]) return res.status(500).json({ error: 'Email e Senha inválidos' });
+            if (!result[0]) return res.status(500).json({ error: 'Email ou Senha inválidos' });
             else newConnection(result[0], res)
         }
     });
